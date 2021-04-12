@@ -1,3 +1,8 @@
+set TOYDATA;
+table ToyData IN "ODBC" "toy_dataset.csv":
+	[TOYDATA], Group 1, Group 1, Group 1, Group 2, Group 2, Group 2, Group 2, Group 3, Group 3, Group 3, Result;
+read table ToyData;
+
 param N > 0; #number of samples
 param B > 0; #number of leaf nodes
 param F > 0; #number of features
