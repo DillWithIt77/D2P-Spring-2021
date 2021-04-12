@@ -1,6 +1,6 @@
 set TOYDATA;
-table ToyData IN "ODBC" "toy_dataset.csv":
-	[TOYDATA], Group 1, Group 1, Group 1, Group 2, Group 2, Group 2, Group 2, Group 3, Group 3, Group 3, Result;
+table ToyData IN "ODBC" "toy_dataset.csv"
+	#[Group_1_1], Group_1_2, Group_1_3, Group_2_1, Group_2_2, Group_2_3, Group_2_4, Group_3_1, Group_3_2, Group_3_3, Result;
 read table ToyData;
 
 param N > 0; #number of samples
