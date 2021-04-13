@@ -29,7 +29,7 @@ param B > 0; #number of leaf nodes
 param F > 0; #number of features
 param K > 0; #number of branch nodes
 param C > 0; #weight to account for imbalance
-param G > 0;
+param G{feats} > 0;
 # maybe param a, maybe read in data
 
 var c_pos{i in POS_LEAF_NODES, j in POS_SCHOOL} >= 0;
@@ -42,17 +42,17 @@ sum{i1 in POS_LEAF_NODES, j1 in POS_SCHOOL} c_pos[i1, j1]
 + C*sum{i2 in NEG_LEAF_NODES, j2 in NEG_SCHOOL} c_neg[i2, j2];
 
 subject to 1_branch_feature {i in 0..K}:
-sum {t in 0..G} v[t, i] = 1
+sum {t in 0..G} v[t, i] = 1;
 
-subject to feature_in_group {i in 0..F, j in BRANCH_NODES}:
-z[i, j] <= v[ ,j]
+subject to feature_in_group {i in 0..F, j in BRANCH_NODES, k in 0...feats}:
+z[i, j] <= v[G[k],j];
 
 subject to left_split {i in 0..N, b in 0..B, k in BRANCH_NODES}:
-c[b, i] <= sum{j in 0..F} a[j, i]*z[j, k]
+c[b, i] <= sum{j in 0..F} a[j, i]*z[j, k];
 #need to account for Left splits
 
 subject to right_split {i in 0..N, b in 0..B, k in BRANCH_NODES}:
-c[b, i] <= 1 - (sum{j in 0..F} a[j, i]*z[j, k])
+c[b, i] <= 1 - (sum{j in 0..F} a[j, i]*z[j, k]);
 #need to account for Right splits
 
 
