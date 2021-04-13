@@ -1,8 +1,22 @@
 set Item;
-#table ToyData IN "ODBC" "toy_dataset.csv":
-#	Item <- [Item], Group_1_1, Group_1_2, Group_1_3, Group_2_1, Group_2_2, Group_2_3, Group_2_4, Group_3_1, Group_3_2, Group_3_3, Result;
-#read table ToyData;
 
+param Group_1_1{Item}>=0;
+param Group_1_2{Item}>=0;
+param Group_1_3{Item}>=0;
+param Group_2_1{Item}>=0;
+param Group_2_2{Item}>=0;
+param Group_2_3{Item}>=0;
+param Group_2_4{Item}>=0;
+param Group_3_1{Item}>=0;
+param Group_3_2{Item}>=0;
+param Group_3_3{Item}>=0;
+param Result{Item}>=-1;
+
+set pos_I;
+set pos_b;
+set neg_I;
+set neg_b;
+param a > 0;
 param N > 0; #number of samples
 param B > 0; #number of leaf nodes
 param F > 0; #number of features
@@ -20,18 +34,18 @@ sum{i1 in pos_I, b1 in pos_b} c[b1, i1]
 + C*sum{i2 in neg_I, b2 in neg_b} c[b2, i2];
 
 subject to 1_branch_feature {i in 0..K}:
-sum {t in 0..G} v[t, i] = 1
+sum {t in 0..G} v[t, i] = 1;
 
-subject to feature_in_group {i in 0..F, j in 0..K}:
-z[i, j] <= v[ ,j]
+#subject to feature_in_group {i in 0..F, j in 0..K}:
+#z[i, j] <= v[i,j];
 
-subject to left_split {i in 0..N, b in 0..B, k in 0..K}:
-c[b, i] <= sum{j in 0..F} a[j, i]*z[j, k]
+#subject to left_split {i in 0..N, b in 0..B, k in 0..K}:
+#c[b, i] <= sum{j in 0..F} a[j, i]*z[j, k];
 #need to account for Left splits
 
-subject to right_split {i in 0..N, b in 0..B, k in 0..K}:
-c[b, i] <= 1 - (sum{j in 0..F} a[j, i]*z[j, k])
+#subject to right_split {i in 0..N, b in 0..B, k in 0..K}:
+#c[b, i] <= 1 - (sum{j in 0..F} a[j, i]*z[j, k]);
 #need to account for Right splits
 
-subject to 1_assigned_node {i in 0..N}:
-sum {b in 0..B} c[b, i] = 1 
+#subject to 1_assigned_node {i in 0..N}:
+#sum {b in 0..B} c[b, i] = 1;
