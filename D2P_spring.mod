@@ -85,11 +85,11 @@ leaf_nodes_n_right[b, k] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a_neg[i,
 # *****CONSTRAINT FINALIZED*****
 
 subject to 1_assigned_node_pos {i in 1..SAMPLES_POS}:
-sum {b1 in POS_LEAF_NODES}c_pos[b1, i] = 1;
+sum {b1 in POS_LEAF_NODES}c_pos[b1, i] <= 1;
 # logic: makes sure c_pos is assigned to only 1 node
 # *****CONSTRAINT FINALIZED*****
 
 subject to 1_assigned_node_neg {i in 1..SAMPLES_NEG}:
-sum{b2 in NEG_LEAF_NODES} c_neg[b2, i] = 1;
+sum{b2 in NEG_LEAF_NODES} c_neg[b2, i] <= 1;
 # logic: makes sure c_neg is assigned to only 1 node
 # *****CONSTRAINT FINALIZED*****
