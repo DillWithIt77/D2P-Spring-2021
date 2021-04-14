@@ -1,23 +1,17 @@
 model D2P_spring.mod;
 data D2P_spring.dat;
 
-option solver minos;
+option solver cplex;
 
 table NegToyData IN "ODBC" "toy_dataset_2.xls" "NegToyData": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
 read table NegToyData;
-#display a;
+
 
 table PosToyData IN "ODBC" "toy_dataset_2.xls" "PosToyData": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
 
 read table PosToyData;
-#display a;
 
-
-#table FeatToyData IN "ODBC" "toy_dataset.xls" "FeatToyData": A <- [SAMPLES,FEATURES], a;
-
-#read table FeatToyData;
-#display a;
 
 solve;
 
