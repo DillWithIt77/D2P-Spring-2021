@@ -53,7 +53,7 @@ member_check[g, f] = 1 ==> z[f, j] <= v[g, j];
 # *****CONSTRAINT FINALIZED*****
 
 subject to left_split_pos {i in 1..SAMPLES_POS, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[i, j]*z[j, k];
+leaf_nodes_p_left[b, k] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[i, j]*z[j, k];
 # logic: leaf_nodes_p_left checks to see if branch node k branches left to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= L(i,k)
@@ -61,7 +61,7 @@ leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[i, j]*z[
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_pos {i in 1..SAMPLES_POS, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a_pos[i, j]*z[j, k]);
+leaf_nodes_p_right[b, k] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a_pos[i, j]*z[j, k]);
 # logic: leaf_nodes_p_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
@@ -69,7 +69,7 @@ leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a_pos[i,
 # *****CONSTRAINT FINALIZED*****
 
 subject to left_split_neg {i in 1..SAMPLES_NEG, b in NEG_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a_neg[i, j]*z[j, k];
+leaf_nodes_n_left[b, k] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a_neg[i, j]*z[j, k];
 # logic: leaf_nodes_n_left checks to see if branch node k branches left to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= L(i,k)
@@ -77,7 +77,7 @@ leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a_neg[i, j]*z[
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_neg {i in 1..SAMPLES_NEG, b in NEG_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_n_right[k, b] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a_neg[i, j]*z[j, k]);
+leaf_nodes_n_right[b, k] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a_neg[i, j]*z[j, k]);
 # logic: leaf_nodes_n_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
