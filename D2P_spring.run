@@ -1,7 +1,7 @@
 model D2P_spring.mod;
 data D2P_spring.dat;
 
-option solver cplex;
+option solver minos;
 
 table NegToyData IN "ODBC" "toy_dataset_2.xls" "NegToyData": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
