@@ -29,8 +29,8 @@ param leaf_nodes_p_right{i in POS_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined 
 param leaf_nodes_n_right{i in NEG_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches right to reach negative leaf node j
 
-var c_pos{i in POS_LEAF_NODES, j in 1..SAMPLES_POS} >= 0; # =1 if correctly classified
-var c_neg{i in NEG_LEAF_NODES, j in 1..SAMPLES_NEG} >= 0; # =1 if correctly classified
+var c_pos{POS_LEAF_NODES, 1..SAMPLES_POS} >= 0; # =1 if correctly classified
+var c_neg{NEG_LEAF_NODES, 1..SAMPLES_NEG} >= 0; # =1 if correctly classified
 var v{g in GROUPS, k in BRANCH_NODES} >= 0; # = 1 if group G chosen for branch k
 var z{f in FEATURES, i in BRANCH_NODES} >= 0; # =1 if feature f goes left on branch k
 
@@ -85,11 +85,11 @@ leaf_nodes_n_right[b, k] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a_neg[i,
 # *****CONSTRAINT FINALIZED*****
 
 subject to 1_assigned_node_pos {i in 1..SAMPLES_POS}:
-sum {b1 in POS_LEAF_NODES}c_pos[b1, i] + sum{b2 in NEG_LEAF_NODES} c_pos[b2, i] = 1;
+sum {b1 in POS_LEAF_NODES}c_pos[b1, i] = 1;
 # logic: makes sure c_pos is assigned to only 1 node
 # *****CONSTRAINT FINALIZED*****
 
 subject to 1_assigned_node_neg {i in 1..SAMPLES_NEG}:
-sum {b1 in POS_LEAF_NODES}c_neg[b1, i] + sum{b2 in NEG_LEAF_NODES} c_neg[b2, i] = 1;
+sum{b2 in NEG_LEAF_NODES} c_neg[b2, i] = 1;
 # logic: makes sure c_neg is assigned to only 1 node
 # *****CONSTRAINT FINALIZED*****
