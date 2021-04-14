@@ -11,7 +11,7 @@ param member_check: Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10
 # LEAF CONNECTIONS FOR SIMPLEST TREE
 
 set POS_LEAF_NODES := 1;
-set NEG_LEAF_NODES := 2, 3;
+set NEG_LEAF_NODES := 2 3;
 set BRANCH_NODES := 1 2;
 
 param leaf_nodes_p_left: 1 2 :=
