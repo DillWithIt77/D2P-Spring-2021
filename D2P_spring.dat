@@ -1,8 +1,8 @@
 set FEATURES := Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10;
 set GROUPS := 1 2 3;
-param SAMPLES_NEG = 2;
-param SAMPLES_POS = 6;
-param C = 3;
+param SAMPLES_NEG := 2;
+param SAMPLES_POS := 6;
+param C := 3;
 
 param member_check: Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10 :=
 1 1 1 1 0 0 0 0 0 0 0
