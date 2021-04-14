@@ -1,39 +1,5 @@
 set POS_SCHOOL; #get this from table read, set of positive samples
 set NEG_SCHOOL; #get this from table read, set of negative samples
-set SAMPLETOT;
-
-param NegFeat1{NEG_SCHOOL}>=0;
-param NegFeat2{NEG_SCHOOL}>=0;
-param NegFeat3{NEG_SCHOOL}>=0;
-param NegFeat4{NEG_SCHOOL}>=0;
-param NegFeat5{NEG_SCHOOL}>=0;
-param NegFeat6{NEG_SCHOOL}>=0;
-param NegFeat7{NEG_SCHOOL}>=0;
-param NegFeat8{NEG_SCHOOL}>=0;
-param NegFeat9{NEG_SCHOOL}>=0;
-param NegFeat10{NEG_SCHOOL}>=0;
-
-param PosFeat1{POS_SCHOOL}>=0;
-param PosFeat2{POS_SCHOOL}>=0;
-param PosFeat3{POS_SCHOOL}>=0;
-param PosFeat4{POS_SCHOOL}>=0;
-param PosFeat5{POS_SCHOOL}>=0;
-param PosFeat6{POS_SCHOOL}>=0;
-param PosFeat7{POS_SCHOOL}>=0;
-param PosFeat8{POS_SCHOOL}>=0;
-param PosFeat9{POS_SCHOOL}>=0;
-param PosFeat10{POS_SCHOOL}>=0;
-
-#param Feat1{SAMPLETOT}>=0;
-#param Feat2{SAMPLETOT}>=0;
-#param Feat3{SAMPLETOT}>=0;
-#param Feat4{SAMPLETOT}>=0;
-#param Feat5{SAMPLETOT}>=0;
-#param Feat6{SAMPLETOT}>=0;
-#param Feat7{SAMPLETOT}>=0;
-#param Feat8{SAMPLETOT}>=0;
-#param Feat9{SAMPLETOT}>=0;
-#param Feat10{SAMPLETOT}>=0;
 
 set FEATURES; #index for each feature, will define in .dat
 set GROUPS; #index for each group, will define in .dat
@@ -44,7 +10,10 @@ set NEG_LEAF_NODES; #index for each right (negative) leaf node, define in .dat f
 
 param SAMPLES > 0; #number of samples (NOT NEEDED, UNLESS WE NEED a?)
 
-param a{s in SAMPLETOT, f in FEATURES}; #get from table read, set of all features for all samples
+
+param a_neg{s in 0..SAMPLES, f in FEATURES} >=0;
+param a_pos{s in 0..SAMPLES, f in FEATURES} >= 0; 
+#param a{s in SAMPLETOT, f in FEATURES}; #get from table read, set of all features for all samples
 
 param C > 0; #weight to account for imbalance, will define in .dat
 #param a{j in FEATURES, k in SampleTot}>= 0; #unsure of how to define this. Reading this in from a table? 
@@ -84,7 +53,7 @@ member_check[f, g] = 1 ==> z[f, j] <= v[g, j];
 # *****CONSTRAINT FINALIZED*****
 
 subject to left_split_pos {i in POS_SCHOOL, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a[j, i]*z[j, k];
+leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[j, i]*z[j, k];
 # logic: leaf_nodes_p_left checks to see if branch node k branches left to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= L(i,k)
@@ -92,7 +61,7 @@ leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a[j, i]*z[j, k
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_pos {i in POS_SCHOOL, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a[j, i]*z[j, k]);
+leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a_pos[j, i]*z[j, k]);
 # logic: leaf_nodes_p_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
@@ -100,7 +69,7 @@ leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a[j, i]*
 # *****CONSTRAINT FINALIZED*****
 
 subject to left_split_neg {i in NEG_SCHOOL, b in NEG_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a[j, i]*z[j, k];
+leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a_neg[j, i]*z[j, k];
 # logic: leaf_nodes_n_left checks to see if branch node k branches left to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= L(i,k)
@@ -108,7 +77,7 @@ leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in FEATURES} a[j, i]*z[j, k
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_neg {i in NEG_SCHOOL, b in NEG_LEAF_NODES, k in BRANCH_NODES}:
-leaf_nodes_n_right[k, b] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a[j, i]*z[j, k]);
+leaf_nodes_n_right[k, b] = 1 ==> c_neg[b, i] <= 1 - (sum{j in FEATURES} a_neg[j, i]*z[j, k]);
 # logic: leaf_nodes_n_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
