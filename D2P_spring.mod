@@ -19,14 +19,14 @@ param C > 0; #weight to account for imbalance, will define in .dat
 #param a{j in FEATURES, k in SampleTot}>= 0; #unsure of how to define this. Reading this in from a table? 
 # maybe param a, maybe read in data
 
-param member_check{i in FEATURES, j in GROUPS} >= 0; #defined in .dat, =1 if feat i in group j
-param leaf_nodes_p_left{i in BRANCH_NODES, j in POS_LEAF_NODES} >= 0; #defined in .dat
+param member_check{i in GROUPS, j in FEATURES} >= 0; #defined in .dat, =1 if feat i in group j
+param leaf_nodes_p_left{i in POS_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches left to reach positive leaf node j
-param leaf_nodes_n_left{i in BRANCH_NODES, j in NEG_LEAF_NODES} >= 0; #defined in .dat
+param leaf_nodes_n_left{i in NEG_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches left to reach negative leaf node j
-param leaf_nodes_p_right{i in BRANCH_NODES, j in POS_LEAF_NODES} >= 0; #defined in .dat
+param leaf_nodes_p_right{i in POS_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches right to reach positive leaf node j
-param leaf_nodes_n_right{i in BRANCH_NODES, j in NEG_LEAF_NODES} >= 0; #defined in .dat
+param leaf_nodes_n_right{i in NEG_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches right to reach negative leaf node j
 
 var c_pos{i in POS_LEAF_NODES, j in 1..SAMPLES_POS} >= 0; # =1 if correctly classified
