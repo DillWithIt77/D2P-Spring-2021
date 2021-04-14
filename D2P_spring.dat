@@ -11,12 +11,15 @@ param member_check: 1 2 3 4 5 6 7 8 9 10 :=
 
 # LEAF CONNECTIONS FOR SIMPLEST TREE
 
-set leaf_nodes:= 1 2 3;
+set leaf_nodes_p := 1;
+set leaf_nodes_n := 2, 3;
 set branch_nodes := 1 2;
 
-param leaf_nodes_left: 1 2 :=
-1 1 1
-2 1 0
-3 0 0;
+param leaf_nodes_p_left: 1 2 :=
+1 1 1;
 
-# leaf_nodes_right just define as 1 - leaf_nodes_left
+param leaf_nodes_n_left: 1 2 :=
+1 1 0
+2 0 0;
+
+# leaf_nodes_*_right just define as 1 - leaf_nodes_*_left
