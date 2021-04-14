@@ -33,6 +33,10 @@ param leaf_nodes_p_left{i in BRANCH_NODES, j in POS_LEAF_NODES} >= 0; #defined i
 # =1 if branch node i branches left to reach positive leaf node j
 param leaf_nodes_n_left{i in BRANCH_NODES, j in NEG_LEAF_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches left to reach negative leaf node j
+param leaf_nodes_p_right{i in BRANCH_NODES, j in POS_LEAF_NODES} >= 0; #defined in .dat
+# =1 if branch node i branches right to reach positive leaf node j
+param leaf_nodes_n_right{i in BRANCH_NODES, j in NEG_LEAF_NODES} >= 0; #defined in .dat
+# =1 if branch node i branches right to reach negative leaf node j
 
 var c_pos{i in POS_LEAF_NODES, j in POS_SCHOOL} >= 0; # =1 if correctly classified
 var c_neg{i in NEG_LEAF_NODES, j in NEG_SCHOOL} >= 0; # =1 if correctly classified
@@ -66,8 +70,8 @@ leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= sum{j in F} a[j, i]*z[j, k];
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_pos {i in POS_SCHOOL, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-1 - leaf_nodes_p_left[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in F} a[j, i]*z[j, k]);
-# logic: 1-leaf_nodes_p_left checks to see if branch node k branches right to reach leaf node b
+leaf_nodes_p_right[k, b] = 1 ==> c_pos[b, i] <= 1 - (sum{j in F} a[j, i]*z[j, k]);
+# logic: leaf_nodes_p_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
 # this handles c_pos
@@ -82,8 +86,8 @@ leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= sum{j in F} a[j, i]*z[j, k];
 # *****CONSTRAINT FINALIZED*****
 
 subject to right_split_neg {i in NEG_SCHOOL, b in NEG_LEAF_NODES, k in BRANCH_NODES}:
-1 - leaf_nodes_n_left[k, b] = 1 ==> c_neg[b, i] <= 1 - (sum{j in F} a[j, i]*z[j, k]);
-# logic: 1-leaf_nodes_n_left checks to see if branch node k branches right to reach leaf node b
+leaf_nodes_n_right[k, b] = 1 ==> c_neg[b, i] <= 1 - (sum{j in F} a[j, i]*z[j, k]);
+# logic: leaf_nodes_n_right checks to see if branch node k branches right to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= R(i,k)
 # this handles c_neg
