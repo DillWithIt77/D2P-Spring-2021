@@ -19,7 +19,7 @@ param C > 0; #weight to account for imbalance, will define in .dat
 #param a{j in FEATURES, k in SampleTot}>= 0; #unsure of how to define this. Reading this in from a table? 
 # maybe param a, maybe read in data
 
-param member_check{i in GROUPS, j in FEATURES} >= 0; #defined in .dat, =1 if feat i in group j
+param member_check{GROUPS, FEATURES} >= 0; #defined in .dat, =1 if feat i in group j
 param leaf_nodes_p_left{i in POS_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches left to reach positive leaf node j
 param leaf_nodes_n_left{i in NEG_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
@@ -47,7 +47,7 @@ sum {i in GROUPS} v[i, k] = 1;
 # *****CONSTRAINT FINALIZED*****
 
 subject to feature_in_group {j in BRANCH_NODES, f in FEATURES, g in GROUPS}:
-member_check[f, g] = 1 ==> z[f, j] <= v[g, j];
+member_check[g, f] = 1 ==> z[f, j] <= v[g, j];
 # logic: check if feature f in group g, if TRUE, z(f, j) <= v(g,j)
 # Follows since cant branch on z if we dont branch on g
 # *****CONSTRAINT FINALIZED*****
