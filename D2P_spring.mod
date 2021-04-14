@@ -1,15 +1,15 @@
 set Item;
 
-param Group_1_1{Item}>=0;
-param Group_1_2{Item}>=0;
-param Group_1_3{Item}>=0;
-param Group_2_1{Item}>=0;
-param Group_2_2{Item}>=0;
-param Group_2_3{Item}>=0;
-param Group_2_4{Item}>=0;
-param Group_3_1{Item}>=0;
-param Group_3_2{Item}>=0;
-param Group_3_3{Item}>=0;
+param A{Item}>=0;
+param B_1{Item}>=0;
+param C_1{Item}>=0;
+param D{Item}>=0;
+param E{Item}>=0;
+param F_1{Item}>=0;
+param G_1{Item}>=0;
+param H{Item}>=0;
+param I_1{Item}>=0;
+param J{Item}>=0;
 param Result{Item}>=-1;
 
 set pos_I;
