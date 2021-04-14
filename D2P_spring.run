@@ -3,11 +3,21 @@ data D2P_spring.dat;
 
 option solver cplex;
 
-table Toydata IN "ODBC" "toy_dataset.xls" "Toydata": Item <- [Item], A, B_1, C_1, D, E, F_1, G_1, H, I_1, J, Result;
+table NegToyData IN "ODBC" "toy_dataset.xls" "NegToyData": NEG_SCHOOLS<- [NEG_SCHOOL], NegFeat1, NegFeat2, NegFeat3, NegFeat4, NegFeat5, NegFeat6, NegFeat7, NegFeat8, NegFeat9, NegFeat10;
 
-read table Toydata;
+read table NegToyData;
+display NegFeat1, NegFeat2, NegFeat3, NegFeat4, NegFeat5, NegFeat6, NegFeat7, NegFeat8, NegFeat9, NegFeat10;
 
-display A, B_1, C_1, D, E, F_1, G_1, H, I_1, J, Result;
+table PosToyData IN "ODBC" "toy_dataset.xls" "PosToyData": POS_SCHOOL <- [POS_SCHOOL], PosFeat1, PosFeat2, PosFeat3, PosFeat4, PosFeat5, PosFeat6, PosFeat7, PosFeat8, PosFeat9, PosFeat10;
+
+read table PosToyData;
+display PosFeat1, PosFeat2, PosFeat3, PosFeat4, PosFeat5, PosFeat6, PosFeat7, PosFeat8, PosFeat9, PosFeat10;
+
+
+table FeatToyData IN "ODBC" "toy_dataset.xls" "FeatToyData": [SAMPLETOT], 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+
+read table FeatToyData;
+display Feat1, Feat2, Feat3, Feat4, Feat5, Feat6, Feat7, Feat8, Feat9, Feat10;
 
 #solve;
 

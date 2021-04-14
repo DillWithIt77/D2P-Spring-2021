@@ -1,8 +1,6 @@
-set F := 1 2 3 4 5 6 7 8 9 10;
-set G := 1 2 3;
-param K = 2; #Don't need, index over branch nodes
-param B = 3; #Don't need, index over POS/NEG leaf nodes
-param N = 8; 
+set FEATURES := 1 2 3 4 5 6 7 8 9 10;
+set GROUPS := 1 2 3;
+param SAMPLES = 8; 
 
 param member_check: 1 2 3 4 5 6 7 8 9 10 :=
 1 1 1 1 0 0 0 0 0 0 0
