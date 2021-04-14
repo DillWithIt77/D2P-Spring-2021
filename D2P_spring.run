@@ -1,0 +1,13 @@
+reset;
+
+model D2P_spring.mod;
+data D2P_spring.dat
+
+option sovler cplex;
+
+table Toydata IN "ODBC" "toy_dataset.xls": [Item], Group_1_1, Group_1_2, Group_1_3, Group_2_1, Group_2_2, Group_2_3, Group_2_4, Group_3_1, Group_3_2, Group_3_3, Result;
+read table Toydata;
+
+solve;
+
+display Correct_Classification;
