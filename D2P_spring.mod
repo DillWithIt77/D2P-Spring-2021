@@ -29,10 +29,10 @@ param leaf_nodes_p_right{i in POS_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined 
 param leaf_nodes_n_right{i in NEG_LEAF_NODES, j in BRANCH_NODES} >= 0; #defined in .dat
 # =1 if branch node i branches right to reach negative leaf node j
 
-var c_pos{POS_LEAF_NODES, 1..SAMPLES_POS} >= 0; # =1 if correctly classified
-var c_neg{NEG_LEAF_NODES, 1..SAMPLES_NEG} >= 0; # =1 if correctly classified
-var v{g in GROUPS, k in BRANCH_NODES} >= 0; # = 1 if group G chosen for branch k
-var z{f in FEATURES, i in BRANCH_NODES} >= 0; # =1 if feature f goes left on branch k
+var c_pos{POS_LEAF_NODES, 1..SAMPLES_POS} >= 0, <= 1; # =1 if correctly classified
+var c_neg{NEG_LEAF_NODES, 1..SAMPLES_NEG} >= 0, <= 1; # =1 if correctly classified
+var v{g in GROUPS, k in BRANCH_NODES} >= 0, <= 1; # = 1 if group G chosen for branch k
+var z{f in FEATURES, i in BRANCH_NODES} >= 0, <= 1; # =1 if feature f goes left on branch k
 
 maximize Correct_Classification:
 sum{i1 in POS_LEAF_NODES, j1 in 1..SAMPLES_POS} c_pos[i1, j1] 
