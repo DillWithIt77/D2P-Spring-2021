@@ -18,7 +18,7 @@ solve;
 display Correct_Classification;
 
 table cPosResults OUT "ODBC" "c_pos_results.xls": [POSITIVE_LEAF_NODES, SAMPLES_POS], c_pos;
-table cNegResults OUT "ODBC" "c_neg_results.xls": [POSITIVE_LEAF_NODES, SAMPLES_NEG], c_neg;
+table cNegResults OUT "ODBC" "c_neg_results.xls": [NEGATIVE_LEAF_NODES, SAMPLES_NEG], c_neg;
 table vResults OUT "ODBC" "v_results.xls": [GROUPS, BRANCH_NODES], v;
 table zResults OUT "ODBC" "z_results.xls": [FEATURES, BRANCH_NODES], z;
 
