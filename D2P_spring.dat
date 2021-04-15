@@ -1,13 +1,28 @@
-set FEATURES := Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10;
-set GROUPS := 1 2 3;
-param SAMPLES_NEG := 2;
-param SAMPLES_POS := 6;
-param C := 3;
+set FEATURES := Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10 Feat11	Feat12 Feat13 Feat14 Feat15 Feat16 Feat17 Feat18 Feat19	Feat20 Feat21 Feat22 Feat23	Feat24 Feat25 Feat26 Feat27	Feat28 Feat29 Feat30 Feat31	Feat32 Feat33 Feat34 Feat35	Feat36 Feat37 Feat38 Feat39	Feat40 Feat41 Feat42 Feat43	Feat44 Feat45 Feat46 Feat47	Feat48 Feat49 Feat50 Feat51 Feat52 Feat53 Feat54 Feat55 Feat56 Feat57 Feat58 Feat59 Feat60;
+set GROUPS := 1 2 3 4 5 6 7 8 9 10 11;
+param SAMPLES_NEG := 40;
+param SAMPLES_POS := 255;
+param C := 6.375;
 
-param member_check: Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10 :=
-1 1 1 1 0 0 0 0 0 0 0
-2 0 0 0 1 1 1 1 0 0 0
-3 0 0 0 0 0 0 0 1 1 1;
+
+#param member_check: Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10 :=
+#1 1 1 1 0 0 0 0 0 0 0
+#2 0 0 0 1 1 1 1 0 0 0
+#3 0 0 0 0 0 0 0 1 1 1;
+
+param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10 Feat11	Feat12 Feat13 Feat14 Feat15 Feat16 Feat17 Feat18 Feat19	Feat20 Feat21 Feat22 Feat23	Feat24 Feat25 Feat26 Feat27	Feat28 Feat29 Feat30 Feat31	Feat32 Feat33 Feat34 Feat35	Feat36 Feat37 Feat38 Feat39	Feat40 Feat41 Feat42 Feat43	Feat44 Feat45 Feat46 Feat47	Feat48 Feat49 Feat50 Feat51 Feat52 Feat53 Feat54 Feat55 Feat56 Feat57 Feat58 Feat59 Feat60 :=
+1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+2 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+3 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+4 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+5 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1;
+
 
 # LEAF CONNECTIONS FOR SIMPLEST TREE
 

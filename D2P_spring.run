@@ -3,16 +3,28 @@ data D2P_spring.dat;
 
 option solver cplex;
 
-table NegToyData IN "ODBC" "toy_dataset_2.xls" "NegToyData": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
+table NegSchools IN "ODBC" "negative_cases.xls" "NegSchool": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
-read table NegToyData;
+read table NegSchools;
 
 
-table PosToyData IN "ODBC" "toy_dataset_2.xls" "PosToyData": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
+table PosSchools IN "ODBC" "positive_cases.xls" "PosSchool": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
 
-read table PosToyData;
+read table PosSchools;
 
 
 solve;
 
 display Correct_Classification;
+
+table cPosResults OUT "ODBC" "c_pos_results.xls": [POSITIVE_LEAF_NODES, SAMPLES_POS], c_pos;
+table cNegResults OUT "ODBC" "c_neg_results.xls": [POSITIVE_LEAF_NODES, SAMPLES_NEG], c_neg;
+table vResults OUT "ODBC" "v_results.xls": [GROUPS, BRANCH_NODES], v;
+table zResults OUT "ODBC" "z_results.xls": [FEATURES, BRANCH_NODES], z;
+
+write table cPosResults;
+write table cNegResults;
+write table vResults;
+write table zResults;
+
+
