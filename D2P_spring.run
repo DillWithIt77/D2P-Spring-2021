@@ -2,6 +2,12 @@ model D2P_spring.mod;
 data D2P_spring.dat;
 
 option solver cplex;
+option cplex_options 'branch = 1 varsel = -1'; #branch up, branch on var with smallest integer infeasilibty
+#option cplex_options 'branch = 1 varsel = 1'; #branch up, branch on var with largest integer infeasilibty
+#option cplex_options 'branch = 1 varsel = 3'; #branch up, strong branching
+#option cplex_options 'branch = -1 varsel = -1'; #branch down, branch on var with smallest integer infeasilibty
+#option cplex_options 'branch = -1 varsel = 1'; #branch down, branch on var with largest integer infeasilibty
+#option cplex_options 'branch = -1 varsel = 3'; #branch up, strong branching
 
 table NegSchools IN "ODBC" "negative_cases.xls" "NegSchool": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
