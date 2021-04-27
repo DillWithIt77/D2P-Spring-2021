@@ -23,8 +23,32 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1;
 
+# SINGLE SPLIT TREE
+#     O
+#    / \
+#   +   -
+#set POS_LEAF_NODES := 1;
+#set NEG_LEAF_NODES := 1;
+#set BRANCH_NODES := 1;
 
-# LEAF CONNECTIONS FOR SIMPLEST TREE
+#param leaf_nodes_p_left: 1 :=
+#1 1;
+
+#param leaf_nodes_n_left: 1 :=
+#1 0;
+
+#param leaf_nodes_p_right: 1 :=
+#1 0;
+
+#param leaf_nodes_n_right: 1 :=
+#1 1;
+
+# LEAF CONNECTIONS FOR SECOND TREE
+#     O
+#    / \
+#   O   -
+#  / \
+# +   -
 
 #set POS_LEAF_NODES := 1;
 #set NEG_LEAF_NODES := 1 2;
@@ -44,34 +68,127 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 #1 0 1
 #2 1 0;
 
-# LEAF CONNECTIONS FOR SYMMETRIC 3 FEATURE TREE
+# LEAF CONNECTIONS FOR THIRD TREE
+#      O
+#    /   \
+#   O     O
+#  / \   / \
+# +   - +   -
+
+#set POS_LEAF_NODES := 1 2;
+#set NEG_LEAF_NODES := 1 2;
+#set BRANCH_NODES := 1 2;
+
+#param leaf_nodes_p_left: 1 2 :=
+#1 1 1
+#2 0 0;
+
+#param leaf_nodes_n_left: 1 2 :=
+#1 1 0
+#2 0 1;
+
+#param leaf_nodes_p_right: 1 2 :=
+#1 0 0
+#2 1 1;
+
+#param leaf_nodes_n_right: 1 2 :=
+#1 0 1
+#2 1 0;
+
+
+# LEAF CONNECTIONS FOR FOURTH TREE
+#      O
+#    /   \
+#   O     O
+#  / \   / \
+# +   - +   O
+#          / \ 
+#         +   -
+
+#set POS_LEAF_NODES := 1 2 3;
+#set NEG_LEAF_NODES := 1 2;
+#set BRANCH_NODES := 1 2 3 4;
+
+#param leaf_nodes_p_left: 1 2 3 4 :=
+#1 1 1 0 0
+#2 0 0 1 0
+#3 0 0 0 1;
+
+#param leaf_nodes_n_left: 1 2 3 4 :=
+#1 1 0 0 0
+#2 0 0 0 0;
+
+#param leaf_nodes_p_right: 1 2 3 4 :=
+#1 0 0 0 0
+#2 1 0 0 0
+#3 1 0 1 0;
+
+#param leaf_nodes_n_right: 1 2 3 4 :=
+#1 0 1 0 0
+#2 1 0 1 1;
+
+# LEAF CONNECTIONS FOR FIFTH TREE
+#       O
+#    /     \
+#   O       O
+#  / \     / \
+# +   O   +   O
+#    / \     / \ 
+#   +   -   +   -
 
 set POS_LEAF_NODES := 1 2 3 4;
-set NEG_LEAF_NODES := 1 2 3 4;
-set BRANCH_NODES := 1 2 3 4 5 6 7;
+set NEG_LEAF_NODES := 1 2;
+set BRANCH_NODES := 1 2 3 4 5;
 
-param leaf_nodes_p_left: 1 2 3 4 5 6 7 :=
-1 1 1 0 1 0 0 0
-2 1 0 0 0 1 0 0
-3 0 0 1 0 0 1 0
-4 0 0 0 0 0 0 1;
+param leaf_nodes_p_left: 1 2 3 4 5 :=
+1 1 1 0 0 0
+2 1 0 0 1 0
+3 0 0 1 0 0
+4 0 0 0 0 1;
+
+param leaf_nodes_n_left: 1 2 3 4 5 :=
+1 1 0 0 0 0
+2 0 0 0 0 0;
+
+param leaf_nodes_p_right: 1 2 3 4 5:=
+1 0 0 0 0 0
+2 0 1 0 0 0
+3 1 0 0 0 0
+4 1 0 1 0 0;
+
+param leaf_nodes_n_right: 1 2 3 4 5:=
+1 0 1 0 1 0
+2 1 0 1 0 1;
 
 
-param leaf_nodes_n_left: 1 2 3 4 5 6 7 :=
-1 1 1 0 0 0 0 0
-2 1 0 0 0 0 0 0
-3 0 0 1 0 0 0 0
-4 0 0 0 0 0 0 0;
+# LEAF CONNECTIONS FOR SYMMETRIC 3 FEATURE TREE
 
-param leaf_nodes_p_right: 1 2 3 4 5 6 7 :=
-1 0 0 0 0 0 0 0
-2 0 1 0 0 0 0 0
-3 1 0 0 0 0 0 0
-4 1 0 1 0 0 0 0;
+#set POS_LEAF_NODES := 1 2 3 4;
+#set NEG_LEAF_NODES := 1 2 3 4;
+#set BRANCH_NODES := 1 2 3 4 5 6 7;
+
+#param leaf_nodes_p_left: 1 2 3 4 5 6 7 :=
+#1 1 1 0 1 0 0 0
+#2 1 0 0 0 1 0 0
+#3 0 0 1 0 0 1 0
+#4 0 0 0 0 0 0 1;
 
 
-param leaf_nodes_n_right: 1 2 3 4 5 6 7 :=
-1 0 0 0 1 0 0 0
-2 0 1 0 0 1 0 0
-3 1 0 0 0 0 1 0
-4 1 0 1 0 0 0 1;
+#param leaf_nodes_n_left: 1 2 3 4 5 6 7 :=
+#1 1 1 0 0 0 0 0
+#2 1 0 0 0 0 0 0
+#3 0 0 1 0 0 0 0
+#4 0 0 0 0 0 0 0;
+
+#param leaf_nodes_p_right: 1 2 3 4 5 6 7 :=
+#1 0 0 0 0 0 0 0
+#2 0 1 0 0 0 0 0
+#3 1 0 0 0 0 0 0
+#4 1 0 1 0 0 0 0;
+
+
+#param leaf_nodes_n_right: 1 2 3 4 5 6 7 :=
+#1 0 0 0 1 0 0 0
+#2 0 1 0 0 1 0 0
+#3 1 0 0 0 0 1 0
+#4 1 0 1 0 0 0 1;
