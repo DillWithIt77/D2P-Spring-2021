@@ -52,8 +52,8 @@ member_check[g, f] = 1 ==> z[f, j] <= v[g, j];
 # Follows since cant branch on z if we dont branch on g
 # *****CONSTRAINT FINALIZED*****
 
-#subject to left_split_pos {i in 1..SAMPLES_POS, b in POS_LEAF_NODES, k in BRANCH_NODES}:
-#leaf_nodes_p_left[b, k] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[i, j]*z[j, k];
+subject to left_split_pos {i in 1..SAMPLES_POS, b in POS_LEAF_NODES, k in BRANCH_NODES}:
+leaf_nodes_p_left[b, k] = 1 ==> c_pos[b, i] <= sum{j in FEATURES} a_pos[i, j]*z[j, k];
 # logic: leaf_nodes_p_left checks to see if branch node k branches left to reach leaf node b
 # if it does then we derive a constriant from it
 # equivalent to c <= L(i,k)
@@ -61,9 +61,9 @@ member_check[g, f] = 1 ==> z[f, j] <= v[g, j];
 # *****CONSTRAINT FINALIZED*****
 
 # ADD CUTTING PLANE FROM PAPER
-subject to left_split_pos_cut {i in 1..SAMPLES_POS, k in BRANCH_NODES}:
-sum{b in POS_LEAF_NODES} leaf_nodes_p_left[b, k]*c_pos[b,i] 
-<= sum{j in FEATURES} a_pos[i, j]*z[j, k];
+#subject to left_split_pos_cut {i in 1..SAMPLES_POS, k in BRANCH_NODES}:
+#sum{b in POS_LEAF_NODES} leaf_nodes_p_left[b, k]*c_pos[b,i] 
+#<= sum{j in FEATURES} a_pos[i, j]*z[j, k];
 
 subject to right_split_pos {i in 1..SAMPLES_POS, b in POS_LEAF_NODES, k in BRANCH_NODES}:
 leaf_nodes_p_right[b, k] = 1 ==> c_pos[b, i] <= 1 - (sum{j in FEATURES} a_pos[i, j]*z[j, k]);
