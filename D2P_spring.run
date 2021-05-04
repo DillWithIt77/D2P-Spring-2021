@@ -11,7 +11,7 @@ option solver cplex;
 #option cplex_options 'branch = -1 varsel = 1 mipdisplay=3 display = 1 presolve 0 mipcuts -1 cutpass -1 heurfreq -1 mipinterval 1'; #branch down, branch on var with largest integer infeasilibty
 #option cplex_options 'branch = -1 varsel = 3 mipdisplay=3 display = 1 presolve 0 mipcuts -1 cutpass -1 heurfreq -1 mipinterval 1'; #branch down, strong branching
 
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchool": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
+table NegSchools IN "ODBC" "negative_cases.xls" "NegSchool": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
 ####only used for self implemented branch and bound method####
 #table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB1": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 1
@@ -23,12 +23,12 @@ option solver cplex;
 #table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB7": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 7
 #table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB8": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 8
 #there are no negative cases for branch 9
-table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB7": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 10
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB7": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 10
 
 read table NegSchools;
 
 
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchool": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
+table PosSchools IN "ODBC" "positive_cases.xls" "PosSchool": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
 
 ####only used for self implemented branch and bound method####
 #table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB1": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 1
@@ -40,7 +40,7 @@ read table NegSchools;
 #table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB7": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 7
 #table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB8": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 8
 #table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB9": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 9
-table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB10": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 10
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB10": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 10
 
 read table PosSchools;
 
