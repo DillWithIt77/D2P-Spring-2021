@@ -1,15 +1,47 @@
 set FEATURES := Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10 Feat11	Feat12 Feat13 Feat14 Feat15 Feat16 Feat17 Feat18 Feat19	Feat20 Feat21 Feat22 Feat23	Feat24 Feat25 Feat26 Feat27	Feat28 Feat29 Feat30 Feat31	Feat32 Feat33 Feat34 Feat35	Feat36 Feat37 Feat38 Feat39	Feat40 Feat41 Feat42 Feat43	Feat44 Feat45 Feat46 Feat47	Feat48 Feat49 Feat50 Feat51 Feat52 Feat53 Feat54 Feat55 Feat56 Feat57 Feat58 Feat59 Feat60 Feat61;
 set GROUPS := 1 2 3 4 5 6 7 8 9 10 11;
+
 param SAMPLES_NEG := 40;
+####Only used for self brnach and bound method###
+#param SAMPLES_NEG := 8; #for branch 1
+#param SAMPLES_NEG := 32; #for branch 2
+#param SAMPLES_NEG := 1; #for branch 3
+#param SAMPLES_NEG := 7; #for branch 4
+#param SAMPLES_NEG := 0; #for branch 5
+#param SAMPLES_NEG := 1; #for branch 6
+#param SAMPLES_NEG := 1; #for branch 7
+#param SAMPLES_NEG := 6; #for branch 8
+
 param SAMPLES_POS := 255;
+####Only used for self brnach and bound method###
+#param SAMPLES_POS := 91; #for branch 1
+#param SAMPLES_POS := 164; #for branch 2
+#param SAMPLES_POS := 8; #for branch 3
+#param SAMPLES_POS := 83; #for branch 4
+#param SAMPLES_POS := 7; #for branch 5
+#param SAMPLES_POS := 1; #for branch 6
+#param SAMPLES_POS := 53; #for branch 7
+#param SAMPLES_POS := 30; #for branch 8
+
 param C := 6.375;
+####Only used for self brnach and bound method###
+#param C := 11.375; #for branch 1
+#param C := 5.125; #for branch 2
+#param C := 8; #for branch 3
+#param C := 11.857; #for branch 4
+#param C := 0; #for branch 5
+#param C := 1; #for branch 6
+#param C := 53; #for branch 7
+#param C := 5; #for branch 8
 
 
+###used for toy dataset###
 #param member_check: Feat1 Feat2 Feat3 Feat4 Feat5 Feat6 Feat7 Feat8 Feat9 Feat10 :=
 #1 1 1 1 0 0 0 0 0 0 0
 #2 0 0 0 1 1 1 1 0 0 0
 #3 0 0 0 0 0 0 0 1 1 1;
 
+###groups for Ma school data###
 param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10 Feat11	Feat12 Feat13 Feat14 Feat15 Feat16 Feat17 Feat18 Feat19	Feat20 Feat21 Feat22 Feat23	Feat24 Feat25 Feat26 Feat27	Feat28 Feat29 Feat30 Feat31	Feat32 Feat33 Feat34 Feat35	Feat36 Feat37 Feat38 Feat39	Feat40 Feat41 Feat42 Feat43	Feat44 Feat45 Feat46 Feat47	Feat48 Feat49 Feat50 Feat51 Feat52 Feat53 Feat54 Feat55 Feat56 Feat57 Feat58 Feat59 Feat60 Feat61:=
 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 2 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -27,6 +59,8 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 #     O
 #    / \
 #   +   -
+
+#### start uncommenting for Tree 1 ####
 #set POS_LEAF_NODES := 1;
 #set NEG_LEAF_NODES := 1;
 #set BRANCH_NODES := 1;
@@ -42,6 +76,7 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 
 #param leaf_nodes_n_right: 1 :=
 #1 1;
+#### end uncommenting for Tree 1 ####
 
 # LEAF CONNECTIONS FOR SECOND TREE
 #     O
@@ -50,6 +85,7 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 #  / \
 # +   -
 
+#### start uncommenting for Tree 2 ####
 #set POS_LEAF_NODES := 1;
 #set NEG_LEAF_NODES := 1 2;
 #set BRANCH_NODES := 1 2;
@@ -67,6 +103,7 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 #param leaf_nodes_n_right: 1 2 :=
 #1 0 1
 #2 1 0;
+#### end uncommenting for Tree 2 ####
 
 # LEAF CONNECTIONS FOR THIRD TREE
 #      O
@@ -75,26 +112,27 @@ param member_check: Feat1 Feat2	Feat3 Feat4	Feat5 Feat6	Feat7 Feat8	Feat9 Feat10
 #  / \   / \
 # +   - +   -
 
-set POS_LEAF_NODES := 1 2;
-set NEG_LEAF_NODES := 1 2;
-set BRANCH_NODES := 1 2 3;
+#### start uncommenting for Tree 3 ####
+#set POS_LEAF_NODES := 1 2;
+#set NEG_LEAF_NODES := 1 2;
+#set BRANCH_NODES := 1 2 3;
 
-param leaf_nodes_p_left: 1 2 3 :=
-1 1 1 0
-2 0 0 1;
+#param leaf_nodes_p_left: 1 2 3 :=
+#1 1 1 0
+#2 0 0 1;
 
-param leaf_nodes_n_left: 1 2 3 :=
-1 1 0 0
-2 0 0 0;
+#param leaf_nodes_n_left: 1 2 3 :=
+#1 1 0 0
+#2 0 0 0;
 
-param leaf_nodes_p_right: 1 2 3 :=
-1 0 0 0
-2 1 0 0;
+#param leaf_nodes_p_right: 1 2 3 :=
+#1 0 0 0
+#2 1 0 0;
 
-param leaf_nodes_n_right: 1 2 3 :=
-1 0 1 0
-2 1 0 1;
-
+#param leaf_nodes_n_right: 1 2 3 :=
+#1 0 1 0
+#2 1 0 1;
+#### end uncommenting for Tree 3 ####
 
 # LEAF CONNECTIONS FOR FOURTH TREE
 #      O
@@ -105,6 +143,7 @@ param leaf_nodes_n_right: 1 2 3 :=
 #          / \ 
 #         +   -
 
+#### start uncommenting for Tree 4 ####
 #set POS_LEAF_NODES := 1 2 3;
 #set NEG_LEAF_NODES := 1 2;
 #set BRANCH_NODES := 1 2 3 4;
@@ -126,6 +165,7 @@ param leaf_nodes_n_right: 1 2 3 :=
 #param leaf_nodes_n_right: 1 2 3 4 :=
 #1 0 1 0 0
 #2 1 0 1 1;
+#### end uncommenting for Tree 4 ####
 
 # LEAF CONNECTIONS FOR FIFTH TREE
 #       O
@@ -136,33 +176,43 @@ param leaf_nodes_n_right: 1 2 3 :=
 #    / \     / \ 
 #   +   -   +   -
 
-#set POS_LEAF_NODES := 1 2 3 4;
-#set NEG_LEAF_NODES := 1 2;
-#set BRANCH_NODES := 1 2 3 4 5;
+#### start uncommenting for Tree 5 ####
+set POS_LEAF_NODES := 1 2 3 4;
+set NEG_LEAF_NODES := 1 2;
+set BRANCH_NODES := 1 2 3 4 5;
 
-#param leaf_nodes_p_left: 1 2 3 4 5 :=
-#1 1 1 0 0 0
-#2 1 0 0 1 0
-#3 0 0 1 0 0
-#4 0 0 0 0 1;
+param leaf_nodes_p_left: 1 2 3 4 5 :=
+1 1 1 0 0 0
+2 1 0 0 1 0
+3 0 0 1 0 0
+4 0 0 0 0 1;
 
-#param leaf_nodes_n_left: 1 2 3 4 5 :=
-#1 1 0 0 0 0
-#2 0 0 0 0 0;
+param leaf_nodes_n_left: 1 2 3 4 5 :=
+1 1 0 0 0 0
+2 0 0 0 0 0;
 
-#param leaf_nodes_p_right: 1 2 3 4 5 :=
-#1 0 0 0 0 0
-#2 0 1 0 0 0
-#3 1 0 0 0 0
-#4 1 0 1 0 0;
+param leaf_nodes_p_right: 1 2 3 4 5 :=
+1 0 0 0 0 0
+2 0 1 0 0 0
+3 1 0 0 0 0
+4 1 0 1 0 0;
 
-#param leaf_nodes_n_right: 1 2 3 4 5 :=
-#1 0 1 0 1 0
-#2 1 0 1 0 1;
+param leaf_nodes_n_right: 1 2 3 4 5 :=
+1 0 1 0 1 0
+2 1 0 1 0 1;
+#### end uncommenting for Tree 5 ####
 
 
-# LEAF CONNECTIONS FOR SYMMETRIC 3 FEATURE TREE
+# LEAF CONNECTIONS SEVENTH TREE
+#              O
+#        /          \
+#      O              O
+#    /    \        /    \
+#   O      O      O      O
+#  / \    / \    / \    / \ 
+# +   -  +   -  +   -  +   -
 
+#### start uncommenting for Tree 7 ####
 #set POS_LEAF_NODES := 1 2 3 4;
 #set NEG_LEAF_NODES := 1 2 3 4;
 #set BRANCH_NODES := 1 2 3 4 5 6 7;
@@ -192,3 +242,4 @@ param leaf_nodes_n_right: 1 2 3 :=
 #2 0 1 0 0 1 0 0
 #3 1 0 0 0 0 1 0
 #4 1 0 1 0 0 0 1;
+#### end uncommenting for Tree 7 ####

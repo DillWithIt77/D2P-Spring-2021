@@ -8,14 +8,14 @@ set BRANCH_NODES; #index for each branch node, define in .dat file
 set POS_LEAF_NODES; #index for each left (positive) leaf node, define in .dat file
 set NEG_LEAF_NODES; #index for each right (negative) leaf node, define in .dat file
 
-param SAMPLES_NEG > 0; #number of samples of negative instances (NOT NEEDED, UNLESS WE NEED a?)
-param SAMPLES_POS > 0; #number of samples of positive instances (NOT NEEDED, UNLESS WE NEED a?)
+param SAMPLES_NEG >= 0; #number of samples of negative instances (NOT NEEDED, UNLESS WE NEED a?)
+param SAMPLES_POS >= 0; #number of samples of positive instances (NOT NEEDED, UNLESS WE NEED a?)
 
 param a_neg{s in 1..SAMPLES_NEG, f in FEATURES} >=0;
 param a_pos{s in 1..SAMPLES_POS, f in FEATURES} >= 0; 
 #param a{s in SAMPLETOT, f in FEATURES}; #get from table read, set of all features for all samples
 
-param C > 0; #weight to account for imbalance, will define in .dat
+param C >= 0; #weight to account for imbalance, will define in .dat
 #param a{j in FEATURES, k in SampleTot}>= 0; #unsure of how to define this. Reading this in from a table? 
 # maybe param a, maybe read in data
 
