@@ -203,6 +203,8 @@ param leaf_nodes_n_right: 1 2 3 4 5 :=
 #### end uncommenting for Tree 5 ####
 
 
+
+###This tree ended up not being used for this project due to the amount of computation time required to solve it.###
 # LEAF CONNECTIONS SEVENTH TREE
 #              O
 #        /          \

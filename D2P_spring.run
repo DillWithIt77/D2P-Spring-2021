@@ -3,7 +3,7 @@ data D2P_spring.dat;
 
 option solver cplex;
 
-###testing different brnach and bounding methods for cplex solver settings###
+###testing different branch and bounding methods for cplex solver settings###
 #option cplex_options 'branch = 1 varsel = -1 mipdisplay=3 display = 1 presolve 0 mipcuts -1 cutpass -1 heurfreq -1 mipinterval 1'; #branch up, branch on var with smallest integer infeasilibty
 #option cplex_options 'branch = 1 varsel = 1 mipdisplay=3 display = 1 presolve 0 mipcuts -1 cutpass -1 heurfreq -1 mipinterval 1'; #branch up, branch on var with largest integer infeasilibty
 #option cplex_options 'branch = 1 varsel = 3 mipdisplay=3 display = 1 presolve 0 mipcuts -1 cutpass -1 heurfreq -1 mipinterval 1'; #branch up, strong branching
@@ -14,13 +14,14 @@ option cplex_options 'branch = -1 varsel = 3 mipdisplay=3 display = 1 presolve 0
 table NegSchools IN "ODBC" "negative_cases.xls" "NegSchool": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
 
 ####only used for self implemented branch and bound method####
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB1": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB2": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB3": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB4": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB1": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 1
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB2": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 2
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB3": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 3
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB4": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 4
+#there are no negative samples for branch 5
 #table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB3": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #same sample for branch 6 as in brnach 3
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB7": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
-#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB8": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>;
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB7": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 7
+#table NegSchools IN "ODBC" "negative_cases.xls" "NegSchoolB8": NEG_SCHOOL <- [i ~ SAMPLES_NEG], {j in FEATURES} <a_neg[i,j] ~ (j)>; #branch 8
 
 read table NegSchools;
 
@@ -28,14 +29,14 @@ read table NegSchools;
 table PosSchools IN "ODBC" "positive_cases.xls" "PosSchool": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
 
 ####only used for self implemented branch and bound method####
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB1": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB2": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB3": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB4": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB5": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB6": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB7": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
-#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB8": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>;
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB1": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 1
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB2": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 2
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB3": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 3
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB4": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 4
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB5": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 5
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB6": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 6
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB7": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 7
+#table PosSchools IN "ODBC" "positive_cases.xls" "PosSchoolB8": POS_SCHOOL <- [i ~ SAMPLES_POS], {j in FEATURES} <a_pos[i,j] ~ (j)>; #branch 8
 
 read table PosSchools;
 
